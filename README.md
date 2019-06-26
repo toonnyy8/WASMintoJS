@@ -1,0 +1,2 @@
+# WASMintoJS
+將emscripten編譯出的wasm填進膠水js中
