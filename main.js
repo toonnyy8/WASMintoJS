@@ -29,10 +29,6 @@ console.info('--dispersion:')
 console.log(program.dispersion);
 console.log('\n')
 
-
-
-
-
 fs.readFile(`${program.path}.js`, "utf8", function (err, jsFile) {
     if (err)
         console.log(err)
@@ -48,8 +44,8 @@ fs.readFile(`${program.path}.js`, "utf8", function (err, jsFile) {
         jsFile = `${jsFile[0]}//wasmBinaryFile = locateFile(wasmBinaryFile);${jsFile[1]}`
 
         if (program.dispersion != "Y") {
-            let wasmFile = fs.readFileSync(`${program.path}.wasm`)
-            jsFile = `let wasmUrl = URL.createObjectURL(new Blob([new Uint8Array([${JSON.parse(JSON.stringify(wasmFile))["data"]}])]))\n${jsFile}`
+            let wasmFile = fs.readFileSync(`${program.path}.wasm`, { encoding: "base64" })
+            jsFile = `let wasmUrl = URL.createObjectURL(new Blob([Uint8Array.from(atob("${wasmFile}"), c => c.charCodeAt(0))]))\n${jsFile}`
         } else {
             jsFile = `import fs from "fs"
             \nlet wasmUrl = URL.createObjectURL(new Blob([fs.readFileSync(__dirname+"/${program.path.split("/").pop()}.wasm")]))\n${jsFile}`
@@ -67,4 +63,3 @@ fs.readFile(`${program.path}.js`, "utf8", function (err, jsFile) {
         })
     }
 })
-
