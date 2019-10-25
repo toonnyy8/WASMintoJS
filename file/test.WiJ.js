@@ -2448,5 +2448,4 @@ run();
 
 
 
-export { Module, runtimeInitialized, runtimeExited };
 //this file is WiJ
