@@ -6,6 +6,8 @@ let isload = () => {
             int_sqrt(12),
             int_sqrt(28)
         );
+        console.log(Module.ccall('int_sqrt', 'number', ['number'], [81]))
+        console.log(Module._int_sqrt(1024))
     } else {
         requestAnimationFrame(isload)
     }
