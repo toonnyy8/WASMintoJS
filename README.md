@@ -2,7 +2,7 @@
 將emscripten編譯出的wasm填進膠水js中
 ```
 npm i
-npm run WiJ -p <filename> -e <Y/N> -d <Y/N>
+npm run WiJ -- -p <filename> -e <Y/N> -d <Y/N>
 ```
 
 ```
